@@ -1,0 +1,306 @@
+"taxon";"habitat";"feeding.mode";"tl";"body.shape";"fin.shape";"spawning.type";"fecundity";"length.infinity";"length.max"
+"Agonus cataphractus";"demersal";"benthivorous";"3,43";"elongated";"rounded";"non-guarder";2550;15;21
+"Xenodermichthys copei";"bathypelagic";"generalist";"3,19";"elongated";"forked";"non-guarder";3754;51;31
+"Ammodytes marinus";"benthopelagic";"planktivorous";"2,71";"elongated";"forked";"non-guarder";13133;16;21
+"Ammodytes tobianus";"demersal";"planktivorous";"3,08";"elongated";"forked";"non-guarder";13133;20;20
+"Ammodytes";"benthopelagic";"planktivorous";"3,15";"elongated";"forked";"non-guarder";12450;19;19
+"Gymnammodytes semisquamatus";"demersal";"planktivorous";"2,68";"elongated";"forked";"non-guarder";13133;18;30
+"Hyperoplus immaculatus";"demersal";"piscivorous";"4,38";"elongated";"forked";"non-guarder";13133;30;35
+"Hyperoplus lanceolatus";"demersal";"generalist";"3,98";"elongated";"forked";"non-guarder";13133;30;40
+"Hyperoplus";"demersal";"generalist";"3,98";"elongated";"forked";"non-guarder";12450;30;38
+"Ammodytidae";"demersal";"generalist";"3,32";"elongated";"forked";"non-guarder";12450;20;19
+"Anarhichas lupus";"demersal";"benthivorous";"3,55";"elongated";"rounded";"non-guarder";25000;131;152
+"Anguilla anguilla";"demersal";"generalist";"3,55";"eel-like";"pointed";"non-guarder";2500000;112;145
+"Argentina silus";"bathydemersal";"generalist";"3,32";"fusiform";"forked";"non-guarder";10000;45;70
+"Argentina sphyraena";"bathydemersal";"generalist";"3,62";"fusiform";"forked";"non-guarder";10000;22;22
+"Argentinidae";"bathydemersal";"generalist";"3,32";"fusiform";"forked";"non-guarder";10000;45;22
+"Bathyraja brachyurops";"bathydemersal";"generalist";"4,07";"flat";"pointed";"non-guarder";11;90;64
+"Atherina presbyter";"pelagic";"planktivorous";"3,67";"elongated";"forked";"non-guarder";1500;15;14
+"Balistes capriscus";"reef-associated";"benthivorous";"4,06";"compressiform";"truncate";"guarder";86750;44;60
+"Balistes";"reef-associated";"benthivorous";"3,94";"compressiform";"truncate";"guarder";86750;52;51
+"Belone belone";"pelagic";"piscivorous";"4,16";"elongated";"forked";"non-guarder";18000;58;93
+"Beryx decadactylus";"bathydemersal";"generalist";"4,13";"fusiform";"forked";"non-guarder";472500;55;52
+"Beryx splendens";"benthopelagic";"generalist";"4,27";"fusiform";"forked";"non-guarder";472500;46;43
+"Blennius ocellaris";"demersal";"benthivorous";"3,49";"elongated";"rounded";"guarder";500;17;17
+"Parablennius gattorugine";"demersal";"benthivorous";"3,59";"fusiform";"rounded";"guarder";500;13;30
+"Arnoglossus imperialis";"demersal";"benthivorous";"3,84";"flat";"rounded";"non-guarder";50000;18;19
+"Arnoglossus laterna";"demersal";"benthivorous";"3,59";"flat";"rounded";"non-guarder";50000;17;17
+"Arnoglossus thori";"demersal";"benthivorous";"3,28";"flat";"rounded";"non-guarder";50000;18;21
+"Brama brama";"bathypelagic";"generalist";"4,08";"compressiform";"forked";"non-guarder";NA;71;100
+"Callionymus lyra";"demersal";"benthivorous";"3,27";"elongated";"rounded";"non-guarder";5000;21;30
+"Callionymus maculatus";"demersal";"benthivorous";"3,31";"elongated";"rounded";"non-guarder";5000;21;13
+"Callionymus reticulatus";"demersal";"benthivorous";"3,28";"elongated";"rounded";"non-guarder";5000;21;11
+"Callionymus";"demersal";"benthivorous";"3,17";"elongated";"rounded";"non-guarder";5000;21;22
+"Callionymidae";"demersal";"benthivorous";"3,17";"elongated";"rounded";"non-guarder";5000;21;22
+"Capros aper";"demersal";"generalist";"3,14";"compressiform";"rounded";"non-guarder";NA;13;18
+"Naucrates ductor";"reef-associated";"planktivorous";"3,98";"fusiform";"forked";"non-guarder";719669;42;34
+"Trachurus mediterraneus";"pelagic";"generalist";"3,77";"fusiform";"lunate";"non-guarder";257524;34;26
+"Trachurus picturatus";"pelagic";"generalist";"3,32";"fusiform";"forked";"non-guarder";276449;47;60
+"Trachurus trachurus";"pelagic";"generalist";"3,71";"fusiform";"forked";"non-guarder";276449;47;41
+"Echiodon drummondii";"bathydemersal";"generalist";"4,03";"eel-like";"pointed";"non-guarder";NA;NA;30
+"Macroramphosus scolopax";"demersal";"benthivorous";"3,47";"compressiform";"truncate";"non-guarder";NA;18;23
+"Macrorhamphosus scolopax";"pelagic";"benthivorous";"3,40";"compressiform";"truncate";"non-guarder";NA;15;19
+"Centrolophus niger";"bathypelagic";"benthivorous";"3,92";"fusiform";"forked";"non-guarder";NA;66;74
+"Schedophilus medusophagus";"pelagic";"planktivorous";"4,00";"fusiform";"forked";"non-guarder";NA;66;51
+"Centrophorus squamosus";"bathydemersal";"generalist";"4,47";"elongated";"heterocercal";"bearer";8;134;145
+"Deania calcea";"bathydemersal";"piscivorous";"4,33";"elongated";"heterocercal";"bearer";10;106;80
+"Deania profundorum";"bathydemersal";"piscivorous";"4,36";"elongated";"heterocercal";"bearer";6;106;79
+"Cepola macrophthalma";"demersal";"planktivorous";"3,13";"elongated";"pointed";"non-guarder";NA;68;73
+"Chimaera monstrosa";"bathydemersal";"benthivorous";"3,52";"elongated";"pointed";"non-guarder";100;88;57
+"Chimaera opalescens";"bathydemersal";"benthivorous";"3,52";"elongated";"pointed";"non-guarder";100;88;110
+"Hydrolagus mirabilis";"bathydemersal";"generalist";"3,94";"elongated";"pointed";"non-guarder";19;88;41
+"Chlorophthalmus agassizi";"bathydemersal";"benthivorous";"3,66";"fusiform";"forked";"non-guarder";8615;19;16
+"Alosa alosa";"pelagic";"generalist";"2,95";"fusiform";"forked";"non-guarder";312500;70;65
+"Alosa fallax";"pelagic";"generalist";"4,03";"fusiform";"forked";"non-guarder";143750;52;43
+"Alosa";"benthopelagic";"generalist";"3,89";"fusiform";"forked";"non-guarder";183974;45;52
+"Clupea harengus";"benthopelagic";"planktivorous";"3,38";"fusiform";"forked";"non-guarder";141075;30;26
+"Sardina pilchardus";"pelagic";"planktivorous";"3,06";"fusiform";"forked";"non-guarder";169000;20;27
+"Spratelloides lewisi";"pelagic";"planktivorous";"3,02";"fusiform";"forked";"non-guarder";28695;7;7
+"Sprattus sprattus";"pelagic";"planktivorous";"3,01";"fusiform";"forked";"non-guarder";14630;15;15
+"Conger conger";"demersal";"piscivorous";"4,31";"eel-like";"pointed";"non-guarder";5500000;229;200
+"Micrenophrys lilljeborgii";"demersal";"generalist";"3,79";"fusiform";"forked";"non-guarder";31696;25;7
+"Myoxocephalus scorpioides";"demersal";"benthivorous";"3,39";"elongated";"truncate";"guarder";8228;26;30
+"Myoxocephalus scorpius";"demersal";"generalist";"3,89";"fusiform";"truncate";"guarder";11150;26;26
+"Taurulus bubalis";"demersal";"benthivorous";"3,59";"fusiform";"rounded";"non-guarder";3800;19;17
+"Triglops murrayi";"demersal";"benthivorous";"3,45";"elongated";"rounded";"non-guarder";450;33;20
+"Cottidae";"demersal";NA;"3,56";"fusiform";"rounded";NA;20043;22;8
+"Cyclopterus lumpus";"benthopelagic";"planktivorous";"3,89";"short and/or deep";"rounded";"guarder";225000;54;57
+"Dalatias licha";"bathydemersal";"piscivorous";"4,23";"elongated";"heterocercal";"bearer";15;146;182
+"Dasyatis pastinaca";"demersal";"benthivorous";"4,05";"flat";"pointed";"bearer";6;122;75
+"Engraulis encrasicolus";"pelagic";"planktivorous";"3,11";"fusiform";"forked";"non-guarder";174000;21;21
+"Epigonus telescopus";"bathydemersal";"generalist";"3,59";"fusiform";"forked";"non-guarder";NA;25;75
+"Etmopterus spinax";"bathydemersal";"generalist";"4,14";"elongated";"heterocercal";"bearer";13;42;60
+"Gadiculus argenteus";"benthopelagic";"planktivorous";"3,60";"fusiform";"truncate";"non-guarder";2549502;18;12
+"Gadiculus thori";"benthopelagic";"generalist";"3,50";"fusiform";"truncate";"non-guarder";2549502;16;15
+"Gadus morhua";"benthopelagic";"generalist";"4,09";"fusiform";"truncate";"non-guarder";5900000;115;116
+"Melanogrammus aeglefinus";"demersal";"benthivorous";"4,03";"fusiform";"truncate";"non-guarder";969000;68;76
+"Merlangius merlangus";"benthopelagic";"generalist";"4,36";"fusiform";"truncate";"non-guarder";381095;60;46
+"Micromesistius poutassou";"bathypelagic";"generalist";"4,13";"elongated";"truncate";"non-guarder";122000;38;29
+"Pollachius pollachius";"benthopelagic";"generalist";"4,32";"fusiform";"truncate";"non-guarder";4535500;86;130
+"Pollachius virens";"demersal";"generalist";"4,31";"fusiform";"truncate";"non-guarder";4535500;126;130
+"Raniceps raninus";"demersal";"benthivorous";"3,77";"fusiform";"rounded";"non-guarder";2549502;62;28
+"Trisopterus esmarkii";"benthopelagic";"planktivorous";"3,24";"fusiform";"truncate";"non-guarder";205595;21;21
+"Trisopterus luscus";"benthopelagic";"generalist";"3,57";"fusiform";"truncate";"non-guarder";521738;46;46
+"Trisopterus minutus";"benthopelagic";"generalist";"3,73";"fusiform";"truncate";"non-guarder";363667;22;24
+"Gasterosteus aculeatus";"benthopelagic";"generalist";"3,31";"fusiform";"truncate";"guarder";250;5;10
+"Spinachia spinachia";"benthopelagic";"generalist";"3,50";"elongated";"rounded";"guarder";346;7;16
+"Apletodon dentatus";"demersal";"benthivorous";"3,10";"eel-like";"pointed";"guarder";195;4;4
+"Diplecogaster bimaculata";"demersal";"generalist";"3,39";"fusiform";"rounded";"guarder";195;4;6
+"Diplecogaster bimaculata bimaculata";"demersal";"generalist";"3,39";"fusiform";"rounded";"guarder";195;4;3
+"Lepadogaster lepadogaster";"demersal";"benthivorous";"2,78";"fusiform";"rounded";"guarder";195;4;7
+"Lepadogaster";"demersal";"benthivorous";"2,78";"fusiform";"rounded";"guarder";195;4;7
+"Aphia minuta";"benthopelagic";"planktivorous";"3,10";"elongated";"rounded";"guarder";1792;5;8
+"Awaous commersoni";"demersal";"planktivorous";"3,31";"fusiform";"rounded";"guarder";3500;10;25
+"Buenia jeffreysii";"demersal";"benthivorous";"3,62";"fusiform";"rounded";"guarder";4513;14;6
+"Crystallogobius linearis";"demersal";"planktivorous";"3,40";"elongated";"rounded";"guarder";3000;5;5
+"Gobius gasteveni";"demersal";"benthivorous";"3,30";"fusiform";"rounded";"guarder";4739;10;12
+"Gobius niger";"demersal";"benthivorous";"3,31";"fusiform";"rounded";"guarder";3500;10;15
+"Gobius paganellus";"demersal";"benthivorous";"3,30";"fusiform";"rounded";"guarder";3076;12;13
+"Gobius";"demersal";"benthivorous";"3,28";"fusiform";"rounded";"guarder";4739;15;23
+"Lesueurigobius friesii";"demersal";"benthivorous";"3,55";"fusiform";"rounded";"guarder";6500;7;9
+"Lesueurigobius";"demersal";"benthivorous";"3,55";"fusiform";"rounded";"guarder";6500;7;9
+"Pomatoschistus lozanoi";"demersal";"generalist";"3,13";"fusiform";"rounded";"guarder";1003;9;8
+"Pomatoschistus microps";"demersal";"benthivorous";"3,29";"fusiform";"rounded";"guarder";3517;11;5
+"Pomatoschistus minutus";"demersal";"benthivorous";"3,22";"fusiform";"rounded";"guarder";3654;8;7
+"Pomatoschistus norvegicus";"demersal";"benthivorous";"3,26";"fusiform";"rounded";"guarder";2995;11;8
+"Pomatoschistus pictus";"demersal";"benthivorous";"3,12";"fusiform";"rounded";"guarder";1000;11;6
+"Pomatoschistus";"demersal";"benthivorous";"3,26";"fusiform";"rounded";"guarder";2550;9;6
+"Gobiidae";"demersal";"benthivorous";"3,11";"fusiform";"rounded";"guarder";14445;12;23
+"Heptranchias perlo";"bathydemersal";"piscivorous";"4,16";"elongated";"heterocercal";"bearer";15;202;139
+"Hexanchus griseus";"bathydemersal";"generalist";"4,48";"elongated";"heterocercal";"bearer";65;202;482
+"Acantholabrus palloni";"reef-associated";"benthivorous";"3,50";"fusiform";"rounded";"guarder";160631;28;25
+"Centrolabrus exoletus";"reef-associated";"benthivorous";"3,50";"fusiform";"rounded";"guarder";160631;13;13
+"Ctenolabrus rupestris";"reef-associated";"benthivorous";"3,58";"fusiform";"rounded";"non-guarder";160631;16;18
+"Labrus bergylta";"reef-associated";"benthivorous";"3,20";"fusiform";"rounded";"guarder";160631;59;51
+"Labrus mixtus";"reef-associated";"benthivorous";"3,91";"fusiform";"rounded";"guarder";160631;39;40
+"Symphodus bailloni";"reef-associated";"benthivorous";"3,36";"fusiform";"truncate";"guarder";160631;23;20
+"Symphodus melops";"reef-associated";"benthivorous";"3,38";"fusiform";"truncate";"guarder";160631;23;21
+"Symphodus roissali";"reef-associated";"benthivorous";"3,47";"fusiform";"truncate";"guarder";160631;15;14
+"Labridae";"reef-associated";"benthivorous";"3,53";"fusiform";"rounded";"non-guarder";160631;28;33
+"Lamna nasus";"pelagic";"piscivorous";"4,57";"fusiform";"heterocercal";"bearer";3;306;329
+"Liparis liparis liparis";"demersal";"benthivorous";"3,59";"elongated";"rounded";"non-guarder";500;13;15
+"Liparis montagui";"demersal";"benthivorous";"3,45";"elongated";"rounded";"non-guarder";700;13;12
+"Lophius budegassa";"bathydemersal";"piscivorous";"4,41";"fusiform";"rounded";"non-guarder";200000;98;93
+"Lophius piscatorius";"bathydemersal";"piscivorous";"4,45";"fusiform";"rounded";"non-guarder";1500000;148;140
+"Brosme brosme";"demersal";"generalist";"3,90";"elongated";"rounded";"non-guarder";2500000;82;120
+"Ciliata mustela";"demersal";"generalist";"3,50";"elongated";"rounded";"non-guarder";19500;102;25
+"Ciliata septentrionalis";"demersal";"planktivorous";"3,50";"elongated";"rounded";"non-guarder";19500;102;12
+"Enchelyopus cimbrius";"demersal";"benthivorous";"3,53";"elongated";"rounded";"non-guarder";500000;40;41
+"Gaidropsarus biscayensis";"benthopelagic";"benthivorous";"3,57";"elongated";"rounded";"non-guarder";2500000;27;40
+"Gaidropsarus macrophthalmus";"demersal";"benthivorous";"3,50";"elongated";"rounded";"non-guarder";2500000;27;19
+"Gaidropsarus mediterraneus";"demersal";"generalist";"3,47";"elongated";"rounded";"non-guarder";2500000;27;50
+"Gaidropsarus vulgaris";"demersal";"benthivorous";"3,47";"elongated";"rounded";"non-guarder";2500000;27;60
+"Gaidropsarus";"demersal";"generalist";"3,48";"elongated";"rounded";"non-guarder";1644668;27;11
+"Molva dypterygia";"demersal";"generalist";"4,49";"elongated";"truncate";"non-guarder";2500000;134;38
+"Molva macrophthalma";"demersal";"generalist";"4,50";"elongated";"truncate";"non-guarder";2500000;154;108
+"Molva molva";"demersal";"generalist";"4,40";"elongated";"truncate";"non-guarder";2000000;168;200
+"Coelorinchus caelorhincus";"benthopelagic";"benthivorous";"3,49";"elongated";"pointed";"non-guarder";29976;25;48
+"Coelorinchus labiatus";"bathydemersal";"generalist";"3,95";"elongated";"pointed";"non-guarder";31226;25;50
+"Coryphaenoides rupestris";"bathypelagic";"generalist";"3,54";"elongated";"pointed";"non-guarder";31226;74;30
+"Hymenocephalus italicus";"benthopelagic";"generalist";"3,40";"elongated";"pointed";"non-guarder";31226;74;5
+"Macrourus berglax";"benthopelagic";"benthivorous";"3,57";"elongated";"pointed";"non-guarder";43860;108;110
+"Malacocephalus laevis";"bathydemersal";"generalist";"3,79";"elongated";"pointed";"non-guarder";29976;74;60
+"Nezumia aequalis";"benthopelagic";"generalist";"3,26";"elongated";"pointed";"non-guarder";29976;30;36
+"Trachyrincus murrayi";"benthopelagic";"generalist";"3,47";"elongated";"pointed";"non-guarder";14191;47;48
+"Trachyrincus scabrus";"bathydemersal";"generalist";"3,64";"elongated";"pointed";"non-guarder";14191;47;22
+"Merluccius merluccius";"demersal";"generalist";"4,42";"fusiform";"truncate";"non-guarder";1834285;110;86
+"Mola mola";"pelagic";"generalist";"3,68";"compressiform";"rounded";"non-guarder";300000000;336;333
+"Halargyreus johnsonii";"bathypelagic";"generalist";"3,38";"elongated";"truncate";"non-guarder";600000;43;56
+"Lepidion eques";"benthopelagic";"benthivorous";"3,24";"fusiform";"rounded";"non-guarder";600000;43;42
+"Mora moro";"benthopelagic";"benthivorous";"3,75";"fusiform";"forked";"non-guarder";600000;64;72
+"Physiculus dalwigki";"benthopelagic";"generalist";"4,20";"elongated";"rounded";"non-guarder";600000;43;30
+"Dicentrarchus labrax";"demersal";"generalist";"3,47";"fusiform";"truncate";"non-guarder";520228;71;76
+"Dicentrarchus punctatus";"pelagic";"generalist";"3,94";"fusiform";"truncate";"non-guarder";520228;72;70
+"Chelon auratus";"pelagic";"benthivorous";"2,84";"elongated";"forked";"non-guarder";790000;35;59
+"Chelon labrosus";"demersal";"benthivorous";"2,59";"elongated";"forked";"non-guarder";851000;51;60
+"Chelon ramada";"pelagic";"benthivorous";"2,34";"fusiform";"forked";"non-guarder";912000;49;70
+"Mullus barbatus barbatus";"demersal";"benthivorous";"3,14";"fusiform";"forked";"non-guarder";20362;26;38
+"Mullus surmuletus";"demersal";"benthivorous";"3,45";"fusiform";"forked";"non-guarder";20362;53;40
+"Mullus";"demersal";"benthivorous";"3,30";"fusiform";"forked";"non-guarder";20362;53;36
+"Mullidae";"non-pelagic";"benthivorous";"3,52";"fusiform";"forked";"non-guarder";20362;53;36
+"Benthosema glaciale";"benthopelagic";"planktivorous";"2,99";"fusiform";"forked";"non-guarder";1051;8;7
+"Ceratoscopelus maderensis";"bathypelagic";"planktivorous";"3,05";"fusiform";"forked";"non-guarder";3025;9;8
+"Lampanyctus crocodilus";"bathypelagic";"planktivorous";"3,22";"fusiform";"forked";"non-guarder";7020;9;30
+"Lampanyctus";"bathypelagic";"planktivorous";"3,25";"fusiform";"forked";"non-guarder";7020;9;9
+"Myctophum punctatum";"bathypelagic";"planktivorous";"3,39";"fusiform";"forked";"non-guarder";800;10;11
+"Myctophum";"bathypelagic";"planktivorous";"3,41";"fusiform";"forked";"non-guarder";3025;10;5
+"Notoscopelus kroyeri";"bathypelagic";"planktivorous";"3,17";"fusiform";"forked";"non-guarder";3380;12;19
+"Myctophidae";"bathypelagic";"planktivorous";"3,19";"fusiform";"forked";"non-guarder";3380;9;6
+"Myliobatis aquila";"benthopelagic";"generalist";"3,61";"flat";"pointed";"bearer";5;206;183
+"Myxine glutinosa";"demersal";"benthivorous";"4,54";"eel-like";"rounded";"non-guarder";25;112;79
+"Notacanthus bonaparte";"bathypelagic";"benthivorous";"3,93";"elongated";"pointed";"non-guarder";30000;NA;26
+"Notacanthidae";"non-pelagic";"benthivorous";"3,93";"elongated";"pointed";"non-guarder";27000;NA;81
+"Osmerus eperlanus";"pelagic";"planktivorous";"3,46";"fusiform";"forked";"non-guarder";26938;33;32
+"Arctozenus risso";"bathypelagic";"generalist";"3,22";"elongated";"forked";"non-guarder";100000;21;30
+"Lestidiops jayakari";"bathypelagic";"generalist";"4,13";"elongated";"forked";"non-guarder";50200;21;20
+"Lestidiops jayakari jayakari";"bathypelagic";"generalist";"4,13";"elongated";"forked";"non-guarder";50200;21;15
+"Macroparalepis affinis";"bathypelagic";"planktivorous";"3,40";"elongated";"forked";"non-guarder";50200;21;55
+"Magnisudis atlantica";"bathypelagic";"generalist";"3,65";"elongated";"forked";"non-guarder";50200;21;56
+"Cyttopsis rosea";"bathypelagic";"generalist";"4,01";"compressiform";"rounded";"non-guarder";NA;NA;31
+"Galeus melastomus";"demersal";"generalist";"4,17";"elongated";"heterocercal";"non-guarder";93;46;54
+"Galeus murinus";"bathydemersal";"piscivorous";"4,12";"elongated";"heterocercal";"non-guarder";54;46;63
+"Sander lucioperca";"pelagic";"piscivorous";"4,04";"fusiform";"forked";"guarder";685311;98;130
+"Lampetra fluviatilis";"demersal";"piscivorous";"4,50";"eel-like";"rounded";"non-guarder";23250;22;45
+"Petromyzon marinus";"demersal";"piscivorous";"4,37";"eel-like";"rounded";"non-guarder";237500;54;120
+"Petromyzontidae";"non-pelagic";"generalist";"3,80";"eel-like";"rounded";"non-guarder";43011;28;45
+"Pholis gunnellus";"demersal";"benthivorous";"3,54";"eel-like";"rounded";"guarder";100;23;25
+"Polymetme corythaeola";"benthopelagic";"piscivorous";"4,40";"elongated";"forked";"non-guarder";109000;6;7
+"Polymetme thaeocoryla";"bathydemersal";"piscivorous";"4,40";"elongated";"forked";"non-guarder";109000;6;22
+"Phycis blennoides";"benthopelagic";"benthivorous";"3,66";"fusiform";"truncate";"non-guarder";1643889;53;50
+"Phycidae";"non-pelagic";NA;"3,97";"fusiform";"rounded";"non-guarder";8000000;65;57
+"Glyptocephalus cynoglossus";"demersal";"benthivorous";"3,17";"flat";"rounded";"non-guarder";100000;41;78
+"Hippoglossoides platessoides";"demersal";"generalist";"4,08";"flat";"rounded";"non-guarder";762611;25;83
+"Hippoglossus hippoglossus";"demersal";"piscivorous";"4,00";"flat";"truncate";"non-guarder";2400000;232;470
+"Limanda limanda";"demersal";"benthivorous";"3,39";"flat";"rounded";"non-guarder";236000;31;44
+"Microstomus kitt";"demersal";"benthivorous";"3,21";"flat";"rounded";"non-guarder";95000;39;67
+"Platichthys flesus";"demersal";"benthivorous";"3,32";"flat";"rounded";"non-guarder";1177674;41;58
+"Pleuronectes platessa";"demersal";"benthivorous";"3,23";"flat";"rounded";"non-guarder";552000;58;100
+"Polyprion americanus";"demersal";"generalist";"4,14";"fusiform";"rounded";"non-guarder";7450000;128;156
+"Amblyraja radiata";"demersal";"generalist";"4,20";"flat";"pointed";"non-guarder";17;68;109
+"Dipturus batis";"demersal";"benthivorous";"3,52";"flat";"pointed";"non-guarder";40;254;285
+"Dipturus nidarosiensis";"bathydemersal";"benthivorous";"3,50";"flat";"pointed";"non-guarder";40;254;230
+"Dipturus oxyrinchus";"bathydemersal";"benthivorous";"3,50";"flat";"pointed";"non-guarder";40;254;150
+"Leucoraja circularis";"demersal";"benthivorous";"3,50";"flat";"pointed";"non-guarder";48;92;120
+"Leucoraja fullonica";"bathydemersal";"benthivorous";"3,50";"flat";"pointed";"non-guarder";48;92;120
+"Leucoraja naevus";"demersal";"benthivorous";"4,21";"flat";"pointed";"non-guarder";63;92;71
+"Raja brachyura";"demersal";"generalist";"3,76";"flat";"pointed";"non-guarder";52;129;115
+"Raja clavata";"demersal";"generalist";"3,84";"flat";"pointed";"non-guarder";94;118;139
+"Raja microocellata";"demersal";"piscivorous";"3,89";"flat";"pointed";"non-guarder";58;137;88
+"Raja montagui";"demersal";"generalist";"3,88";"flat";"pointed";"non-guarder";42;83;77
+"Raja undulata";"demersal";"benthivorous";"3,50";"flat";"pointed";"non-guarder";38;111;114
+"Rajella bathyphila";"bathydemersal";"benthivorous";"3,37";"flat";"pointed";"non-guarder";55;120;90
+"Rostroraja alba";"demersal";"piscivorous";"4,41";"flat";"pointed";"non-guarder";104;120;230
+"Salmo trutta trutta";"pelagic";"benthivorous";"3,59";"fusiform";"truncate";"non-guarder";8616;88;35
+"Salmo";"benthopelagic";"generalist";"3,59";"fusiform";"truncate";"non-guarder";8616;88;35
+"Argyrosomus regius";"benthopelagic";"piscivorous";"4,29";"fusiform";"truncate";"non-guarder";2000000;172;182
+"Umbrina canariensis";"demersal";"benthivorous";"3,37";"fusiform";"truncate";"non-guarder";311725;57;80
+"Umbrina cirrosa";"demersal";"benthivorous";"3,41";"fusiform";"truncate";"non-guarder";311725;87;73
+"Scomberesox saurus saurus";"pelagic";"planktivorous";"3,91";"elongated";"forked";"non-guarder";NA;36;50
+"Sarda sarda";"pelagic";"piscivorous";"4,50";"fusiform";"forked";"non-guarder";2455257;77;91
+"Scomber colias";"pelagic";"generalist";"3,91";"fusiform";"forked";"non-guarder";579085;40;50
+"Scomber japonicus";"pelagic";"planktivorous";"3,38";"fusiform";"forked";"non-guarder";540129;43;70
+"Scomber scombrus";"pelagic";"generalist";"3,63";"fusiform";"forked";"non-guarder";598563;37;50
+"Lepidorhombus boscii";"demersal";"benthivorous";"3,74";"flat";"rounded";"non-guarder";500000;41;35
+"Lepidorhombus whiffiagonis";"bathydemersal";"benthivorous";"4,34";"flat";"rounded";"non-guarder";500000;59;47
+"Phrynorhombus norvegicus";"benthopelagic";"benthivorous";"3,98";"flat";"rounded";"non-guarder";10000000;66;12
+"Scophthalmus maximus";"demersal";"benthivorous";"4,36";"flat";"rounded";"non-guarder";5000000;69;82
+"Scophthalmus rhombus";"demersal";"benthivorous";"4,42";"flat";"rounded";"non-guarder";10000000;44;46
+"Zeugopterus punctatus";"demersal";"generalist";"3,99";"flat";"rounded";"non-guarder";10000000;66;25
+"Zeugopterus regius";"demersal";"generalist";"3,99";"flat";"rounded";"non-guarder";10000000;66;20
+"Zeugopterus";"demersal";"generalist";"3,99";"flat";"rounded";"non-guarder";10000000;55;23
+"Scorpaena loppei";"demersal";"benthivorous";"3,50";"fusiform";"rounded";"non-guarder";103000;12;13
+"Scorpaena notata";"demersal";"benthivorous";"3,70";"fusiform";"rounded";"non-guarder";15000;18;18
+"Scorpaena porcus";"demersal";"benthivorous";"3,92";"fusiform";"rounded";"non-guarder";50000;26;30
+"Scorpaena scrofa";"demersal";"benthivorous";"4,25";"fusiform";"rounded";"non-guarder";247407;57;54
+"Scorpaenidae";"demersal";"generalist";"3,76";"fusiform";"rounded";"non-guarder";48851;52;30
+"Scyliorhinus canicula";"demersal";"generalist";"3,82";"elongated";"heterocercal";"non-guarder";2;81;70
+"Scyliorhinus stellaris";"reef-associated";"generalist";"4,03";"elongated";"heterocercal";"non-guarder";77;81;170
+"Helicolenus dactylopterus";"bathydemersal";"generalist";"3,54";"fusiform";"truncate";"non-guarder";230055;35;33
+"Sebastes mentella";"bathypelagic";"generalist";"4,12";"fusiform";"truncate";"bearer";22450;51;58
+"Sebastes norvegicus";"benthopelagic";"generalist";"4,04";"fusiform";"truncate";"bearer";142988;74;82
+"Sebastes viviparus";"demersal";"generalist";"4,03";"fusiform";"truncate";"bearer";20000;36;35
+"Serranus cabrilla";"demersal";"generalist";"3,35";"fusiform";"truncate";"non-guarder";45000;30;27
+"Serranus scriba";"demersal";"benthivorous";"3,82";"fusiform";"truncate";"non-guarder";45000;30;32
+"Bathysolea profundicola";"bathydemersal";"benthivorous";"3,17";"flat";"rounded";"non-guarder";125000;28;21
+"Buglossidium luteum";"demersal";"benthivorous";"3,31";"flat";"rounded";"non-guarder";13400;11;14
+"Dicologlossa cuneata";"demersal";"benthivorous";"3,32";"flat";"rounded";"non-guarder";160000;27;30
+"Microchirus variegatus";"demersal";"benthivorous";"3,28";"flat";"rounded";"non-guarder";500000;19;25
+"Microchirus";"demersal";"benthivorous";"3,23";"flat";"rounded";"non-guarder";500000;27;25
+"Pegusa lascaris";"demersal";"benthivorous";"3,29";"flat";"rounded";"non-guarder";500000;27;35
+"Solea senegalensis";"demersal";"benthivorous";"3,25";"flat";"rounded";"non-guarder";500000;53;60
+"Solea solea";"demersal";"benthivorous";"3,21";"flat";"rounded";"non-guarder";300000;47;60
+"Centroscymnus coelolepis";"bathydemersal";"generalist";"4,48";"elongated";"heterocercal";"bearer";21;85;88
+"Centroscymnus crepidater";"bathydemersal";"piscivorous";"4,16";"elongated";"heterocercal";"bearer";6;85;130
+"Scymnodon ringens";"bathypelagic";"generalist";"4,22";"elongated";"heterocercal";"bearer";16;317;110
+"Boops boops";"demersal";"planktivorous";"2,79";"fusiform";"forked";"non-guarder";150000;31;36
+"Diplodus sargus";"demersal";"benthivorous";"3,22";"compressiform";"forked";"non-guarder";115000;42;32
+"Diplodus vulgaris";"benthopelagic";"benthivorous";"3,52";"compressiform";"forked";"non-guarder";15437;28;45
+"Lithognathus mormyrus";"demersal";"benthivorous";"3,42";"fusiform";"forked";"non-guarder";408380;36;55
+"Pagellus acarne";"benthopelagic";"benthivorous";"3,81";"fusiform";"forked";"non-guarder";310500;29;37
+"Pagellus bogaraveo";"benthopelagic";"generalist";"4,21";"fusiform";"forked";"non-guarder";285000;54;53
+"Pagellus erythrinus";"benthopelagic";"benthivorous";"3,48";"fusiform";"forked";"non-guarder";141600;52;60
+"Pagrus pagrus";"benthopelagic";"benthivorous";"3,86";"fusiform";"forked";"non-guarder";200000;118;91
+"Sparus aurata";"demersal";"generalist";"3,70";"fusiform";"truncate";"non-guarder";408380;57;70
+"Spondyliosoma cantharus";"benthopelagic";"generalist";"3,34";"compressiform";"forked";"non-guarder";90413;56;40
+"Squalus acanthias";"benthopelagic";"generalist";"4,37";"elongated";"heterocercal";"bearer";11;90;110
+"Argyropelecus hemigymnus";"bathypelagic";"planktivorous";"3,06";"short and/or deep";"forked";"non-guarder";350;10;3
+"Argyropelecus olfersii";"bathypelagic";"generalist";"3,36";"short and/or deep";"forked";"non-guarder";350;10;9
+"Maurolicus muelleri";"bathypelagic";"planktivorous";"3,01";"fusiform";"forked";"non-guarder";350;5;5
+"Chirolophis ascanii";"benthopelagic";"benthivorous";"3,23";"elongated";"rounded";"guarder";75323;48;25
+"Lumpenus lampretaeformis";"demersal";"benthivorous";"3,59";"eel-like";"rounded";"guarder";700;48;35
+"Chauliodus sloani";"bathypelagic";"generalist";"4,20";"elongated";"forked";"non-guarder";45000;23;11
+"Stomias boa boa";"bathypelagic";"piscivorous";"3,95";"elongated";"forked";"non-guarder";45000;26;32
+"Stomias boa ferox";"bathypelagic";"piscivorous";"3,62";"elongated";"forked";"non-guarder";45000;26;30
+"Synaphobranchus kaupii";"bathydemersal";"generalist";"4,09";"eel-like";"pointed";"non-guarder";120000;137;54
+"Entelurus aequoreus";"demersal";"generalist";"3,54";"eel-like";"pointed";"bearer";500;26;60
+"Hippocampus hippocampus";"demersal";"generalist";"3,15";"eel-like";"pointed";"bearer";338;17;15
+"Nerophis ophidion";"demersal";"generalist";"4,01";"eel-like";"pointed";"bearer";250;30;29
+"Syngnathus acus";"demersal";"benthivorous";"3,33";"eel-like";"rounded";"bearer";221;23;21
+"Syngnathus rostellatus";"demersal";"planktivorous";"3,69";"eel-like";"rounded";"bearer";100;20;19
+"Syngnathus typhle";"demersal";"planktivorous";"4,31";"eel-like";"rounded";"bearer";175;26;35
+"Syngnathus";"demersal";"generalist";"3,48";"eel-like";"rounded";"bearer";201;23;19
+"Tetronarce nobiliana";"benthopelagic";"piscivorous";"4,50";"flat";"truncate";"bearer";30;91;73
+"Torpedo marmorata";"reef-associated";"benthivorous";"4,50";"flat";"rounded";"bearer";19;91;100
+"Hoplostethus mediterraneus mediterraneus";"benthopelagic";"benthivorous";"3,49";"compressiform";"forked";"non-guarder";59161;28;16
+"Echiichthys vipera";"demersal";"benthivorous";"4,41";"elongated";"truncate";"non-guarder";160000;15;15
+"Trachinus draco";"demersal";"generalist";"4,18";"fusiform";"truncate";"non-guarder";160000;35;53
+"Trachipterus arcticus";"bathypelagic";"piscivorous";"4,50";"eel-like";"truncate";"non-guarder";200000;303;300
+"Galeorhinus galeus";"benthopelagic";"piscivorous";"4,34";"elongated";"heterocercal";"bearer";29;172;195
+"Mustelus asterias";"demersal";"benthivorous";"3,68";"elongated";"heterocercal";"bearer";11;114;140
+"Mustelus mustelus";"demersal";"generalist";"3,75";"elongated";"heterocercal";"bearer";10;175;164
+"Mustelus";"demersal";"generalist";"3,68";"elongated";"heterocercal";"bearer";9;114;129
+"Aphanopus carbo";"bathypelagic";"piscivorous";"4,48";"eel-like";"forked";"non-guarder";500000;145;118
+"Lepidopus caudatus";"benthopelagic";"generalist";"3,82";"eel-like";"forked";"non-guarder";213500;151;164
+"Chelidonichthys cuculus";"demersal";"generalist";"3,81";"fusiform";"truncate";"non-guarder";57500;39;34
+"Chelidonichthys lastoviza";"demersal";"benthivorous";"3,49";"fusiform";"truncate";"non-guarder";13000;38;30
+"Chelidonichthys lucerna";"demersal";"generalist";"3,98";"elongated";"truncate";"non-guarder";100000;48;56
+"Chelidonichthys obscurus";"demersal";"benthivorous";"3,74";"elongated";"truncate";"non-guarder";15000;42;34
+"Eutrigla gurnardus";"demersal";"generalist";"3,87";"elongated";"truncate";"non-guarder";244949;46;36
+"Lepidotrigla dieuzeidei";"demersal";"generalist";"3,66";"fusiform";"truncate";"non-guarder";250000;16;20
+"Trigla lyra";"bathydemersal";"benthivorous";"3,65";"fusiform";"truncate";"non-guarder";108000;61;47
+"Triglidae";"demersal";"generalist";"3,74";"fusiform";"truncate";"non-guarder";250000;42;40
+"Zenopsis conchifer";"benthopelagic";"generalist";"4,50";"compressiform";"truncate";"non-guarder";292500;69;80
+"Zeus faber";"benthopelagic";"piscivorous";"4,50";"compressiform";"truncate";"non-guarder";30000;69;59
+"Lycenchelys sarsii";"bathydemersal";"benthivorous";"3,21";"eel-like";"pointed";"guarder";25;30;23
+"Zoarces viviparus";"demersal";"benthivorous";"3,73";"eel-like";"pointed";"bearer";100;107;32
+"Zoarcidae";"bathydemersal";"generalist";"3,47";"eel-like";"pointed";"guarder";557;36;37

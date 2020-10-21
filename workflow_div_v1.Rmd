@@ -1,0 +1,710 @@
+---
+title: "workflow_div_v1"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+``` 
+
+# Workflow description
+To do before starting the workflow in Rstudio
+1) Download and unzip the folder "workflow_div_v1.gz"
+2) Move the input files in the directory workflow_div_v1/input
+
+Needed files to start
+
+# A FAIRE
+
+ + Voir la compatibilté entre R4 et version d'avant 
+ 
+ + Travail à faire pour que les librairies soient déjà téléchargées/éviter à l'utilisateur les problèmes de dépendances/de version de R, ... --> voir avec François / Gildas / Romain?
+ 
+ + Faire les fonctions ou mettre les explication concernant les types de jeux de données d'entrée, faire attention aux noms des colonnes , ...
+ 
+ + Proposer occurences basée sur gbif (https://cran.r-project.org/web/packages/rgbif/rgbif.pdf) --> OR NOT FOR NOW WE FOCUS ON MARINE ONLY 
+ Pour fishbase --> occurence function is not working anymore, I did not see for now another option to retrieve gps coord of occurences
+ 
+ + Rajouter function classification only on gbif 
+ 
+ + Réfléchier aux potentiels problèmes pour les jeux de de traits (comment matcher pour avoir que les taxas/espèces vues dans la matrice de communauté)
+ 
+ + dire au début quelles fonctions ont besoin d'accès à internet direct
+
+# A AMELIORER 
+
+  + Mieux détailler les étapes 
+  
+  + Rajouter dans les fonction des stop et messages explicatifs 
+  ex: } else {
+    stop("map_type must be one of 'satellite' or 'world'",
+         call. = FALSE)
+  }
+
+# Loading functions
+
+**Description:** The chunk "load_functions" is loading the needed functions
+
+**User's action:** Click on the green start icon "run current chunk" and move to the following chunk.
+
+```{r load_functions}
+dir.func <- "./functions/"
+
+func_list <- list.files(dir.func)
+
+for(i in func_list){
+  
+  func <- paste(dir.func,i,sep="")
+  
+  source(func)
+  
+}
+
+```
+
+
+# Loading packages
+
+**Description:**The chunk "load_packages" is installing and loading the needed packages.
+
+**User's action:** Click on the green start icon "run current chunk" and move to the following chunk.
+
+```{r load_packages}
+load.packages()
+```
+
+# Import user's data
+
+**Description:** Import the datasets required in the workflow. See Details informations to know the format and specific requirement for each dataset.
+
+**Details informations:**
+
+Input files are: 
+  
+  + **MANDATORY FILE OTU or ASV table :**  It must be a .csv file containing the OTU or ASV table with OTU or ASV in column and sample names in rownames. This object must be a numeric matrix  
+  + **MANDATORY FILE Sample metadata table :** It must be a .csv file. If the coordinate gps of sites, sampling event date and sampling year are provided, names of columns must be decimalLongitude, decimalLatitude, eventDate, year. The import function will automatically add those columns and put "not_provided_by_user" if the user did not provide those columns. 
+  + **MANDATORY FILE Taxonomic assignment table :** It must be a .csv file. This file must be composed of 2 columns: one called OTU_ID (name of the OTU or ASV) and one called user_supplied_name (taxonomic assignmenent of the OTU or ASV). A space between genus and species names is required (for now underscores or point are not accepted)
+  + **OPTIONAL FILE Traits table :** It must be a .csv file where each column is a trait and one column is the taxon name called taxon
+  + **OPTIONAL FILE Phylogenetic tree :** .tre file ? ??? NOT COMPLETED
+
+
+**Users' action:** 
+
+  + 1) Provide in the chunk "load_user.data" the name of the files between quotation marks "name_of_file" without any extension (ex .csv). 
+  
+  + 2) Click on the green start icon "load_user.data" and move to the following chunk.
+
+```{r load_user.data}
+
+# MANDATORY FILE : Provide the name of the otu.table file
+otu.comm.name <-  "eDNA_test_otu_table" 
+sample.otu.col.name <- "Echantillon" # Provide the name of the column corresponding to the sample names in the file
+
+# MANDATORY FILE : Provide the name of the sample metadata file
+sample.metaD.name <- "eDNA_test_metadata_table" 
+sample.metaD.col.name <- "Echantillon" # Provide the name of the column corresponding to the sample names in the file
+
+# MANDATORY FILE : Provide the name of the taxnonomic assignement file
+taxo.table.name <- "eDNA_test_taxo_table" 
+
+# OPTIONAL FILE : Provide the name of the traits table file, if no trait table avalaible put NULL
+traits.user.name <- "eDNA_test_trait_table" # or NULL
+
+# OPTIONAL FILE : Provide the name of the phylogenetic table file, if no phylogenetic table avalaible put NULL
+phylo.tree.user.name <- NULL 
+
+```
+
+**Users' action:** Click on the green start icon "check_filesoK" and move to the following chunk.
+
+```{r check_filesoK}
+check_file_exist(otu=otu.comm.name, 
+           metadata=sample.metaD.name, 
+           taxo=taxo.table.name, 
+           trait=traits.user.name,
+           phylo=phylo.tree.user.name)
+```
+
+**Description:** Import the provided files in R
+
+**Users' action:** Click on the green start icon "input_data" and move to the following chunk.
+
+```{r input_data}
+
+datasets <- import_files(otu=otu.comm.name, 
+                         sample.otu.col = sample.otu.col.name,
+                         metadata=sample.metaD.name,
+                         sample.metaD.col = sample.metaD.col.name,
+                         taxo=taxo.table.name, 
+                         trait=traits.user.name,
+                         phylo=phylo.tree.user.name)
+
+list2env(datasets ,.GlobalEnv)
+rm(datasets)
+
+```
+
+Add something to list/see the head of each imported file?
+```{r}
+
+```
+
+
+# Module "Data Harvest"
+## Taxonomic classification
+
+**Description:** Give the most accurate taxonomic accepted classification  
+
+The function has 2 steps:
+
+  + **Resolve taxonomic name:** for instance, get the correct spelling when fuzzy spelling, remove non-scientific name information (spp., subspecies x, ...)). This is done by comparing with WORMS and GBIF database : First it looks if the taxa is present in WORMS and if not, it goes to GBIF
+  
+  + **Retrieve the taxonomic classification:** It retrieves from the package worrms the accepted taxonomy (scientific accepted name and associated classification) of each query by putting marine_only=FALSE to increase the number of species for which the taxonomy is found. When the taxon is not found in WORMS, a second search is done in GBIF (useful for instance when non-marine/aquatic taxa are present)
+
+```{r get_class}
+taxo.table.class <- get_taxo_class(taxo.table.in=taxo.table)
+
+head(kable(taxo.table.class, caption="First rows of the new taxonomic classification table"))
+
+```
+
+Identify the taxonomic assignments with no taxonomic classification found in WORMS and GBIF 
+
+```{r no_class}
+taxo.table.class %>% filter(source=="none")
+```
+
+**WARNINGS --> Here I don't know what we need to do: The user must manually change the user_supplied_name and restart the workflow ? Do we let it like that and "forget" this OTU? NEED TO THINK ABOUT A SOLUTION.**
+
+
+## Filter on non-target taxa
+
+**Description:** Remove untargeted taxa if required by the user
+
+```{r}
+# NOT STARTED YET
+```
+
+
+## Traits
+
+**Description:** Do some checking if a user trait table is provided, if not, performs an automatic request of trait from Fishbase with the R package rfishbase (https://cran.r-project.org/web/packages/rfishbase/rfishbase.pdf)
+
+### Subset user's traits table (if provided)
+ 
+If a user trait table was provided in the Import data under the object traits.user.name, this step intends to subset if needed the trait table to taxa only present in the study and to hihlight if some taxa from the study are absent from the user trait table
+
+```{r traits_user_db}
+
+# UNDER CONSTRUCTION
+
+check_traits_user_table <- function(){
+  
+}
+
+taxon.comm <- datasets$taxo.table.class %>% distinct(valid_name) %>% rename(taxon=valid_name)
+
+trait.table.user.comm <- datasets$trait.table.user %>%
+  inner_join(., taxon.comm) 
+
+
+  
+  # or right_join(., taxon.comm) if we want to add to the trait.table.user the names of the taxon absent in this db
+  mutate(taxon = gsub(" ", "_", taxon)) %>%
+  column_to_rownames(var="taxon")
+```
+  
+### Request Fishbase
+
+If no user trait's table was imported or if some species from the community matrix where absent from the user traits' table (not done yet), 
+go into Fishbase to retrieve traits 
+
+**Remark:** It seems complicated for now to imagine the code in the case where we want to complement user's trait table if some species are absent because we need to have exact match between the name of the traits between user trait table and fishbase columns names- perhaps before at the begining of the module Traits, we could "force" the user to set very specific traits and use the name from Fishabse but it looks quite a bit messy --> Need to be discussed together
+
+```{r request_trait}
+
+```
+
+```{r choice_traits}
+
+```
+
+```{r select_traits}
+
+```
+
+## IUCN status
+
+
+```{r}
+# NOT STARTED YET
+#voir taxize for api advices for iucn
+```
+
+
+# Module Occurence
+
+## Occurence - target species
+
+Plot occurence of targeted species found in the user dataset
+
+**For now done for one species at a time --> NEED TO BE IMPROVED**
+
+```{r}
+species.target <- "Labrus mixtus"
+
+occ.species.target <- get.occ.species.obis(species.name = species.target, 
+              startdate_chosen = NULL, # explain how to enter the data, format and look if its works
+              type_zone="area", # or type_zone="polygon"
+              coord_zone=c("40023", "40024", "40025", "40026"), # or coord_zone = NULL or coord_zone="POLYGON ((-4 48.5, -4 48.8, -3.7 48.8, -3.7 48.5, -4 48.5))"
+              otu.comm.target = otu.comm, 
+              sample.metaD.target = sample.metaD, 
+              taxo.table.class.target = taxo.table.class,
+              save.occ.csv="no",
+              pathToCsv=paste(pathToUserDir, "/output/",sep=""), 
+              nameCsv=paste(species.target, "obis.occ", sep=""))
+
+
+plot.occ.species.obis(occ.species.target)
+```
+
+
+
+## Occurence - target genus
+
+until 12 species colored
+
+```{r}
+otu.Genus <- taxo.table.class.target %>% filter(rank=="Genus") %>% distinct(valid_name)
+otu.Genus      
+
+occ.genus.obis(genus="Labrus",
+               startdate_chosen = "2012", 
+               type_zone="area", 
+               coord_zone="40024")
+```
+
+
+Plot occurences of species present in the sampling area from taxa only identified at the genus level in the user dataset 
+
+# Module "Phylo"
+
+**Description:** Import a phylogenetic tree from a synthesis phylogeny
+
+## Import tree from synthesis phylogenies
+
+This step is recommanded if the user did not already provide a phylogenetic tree. It intends to retrieve from r phylogenetic packages phylogenetic trees 
+
+### For fish tree
+
+This section retrieves from fishtree of life (https://fishtreeoflife.org/) R package (https://cran.r-project.org/web/packages/fishtree/fishtree.pdf) a phylogenetic tree. The default paramaters are:
+
+  + to retrieve the whole phylogenetic tree of Actinopterygii but options are provided to subset the tree
+  + the type of phylogenetic tree if chronogram but can be changed by "phylogram", "chronogram_mrca" or "phylogram_mrca" (run ?fishtree_phylogeny in the console to get the help file and details about the differen ttype of phylogenetic tree)
+
+
+
+```{r}
+# ---  https://fishtreeoflife.org/fishtree/index.html
+# NB : Need to understand if chronogram is the correct type (if there is one) and if chronogram means ultrametric
+```
+
+
+If the whole phylogenetic tree of Actinopterygii is required, run the following chunk:
+
+```{r get_fishtree_all}
+phylo.tree.syn <- get_fishtree(type="chronogram") 
+# ex: if phylogram is chosen do : phylo.tree.syn <- get_fishtree(type="phylogram")
+```
+
+If the user needs to select specific taxa, there is two options: 
+  
+  + Option 1: Subset the tree for one taxonomic rank (ex Labridae)
+  
+```{r get_fishtree_rank}
+phylo.tree.syn <- get_fishtree(rank.target = "Labridae", type="chronogram")
+```
+
+  + Option 2: Subset the tree for a list of species 
+  
+```{r get_fishtree_list_sp}
+phylo.tree.syn <- get_fishtree(species.target = c("Oryzias latipes", "Tetraodon nigroviridis"), type="chronogram")
+```
+
+
+### For non-fishes tree
+
+NOT STARTED 
+
+```{r non_fishtree}
+
+# --- From rotl/phylomatic for non-fishes trees  https://royalsocietypublishing.org/doi/10.1098/rspb.2020.0777,
+#                                      https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecy.2788
+#                                      https://cran.r-project.org/web/packages/rotl/rotl.pdf
+#                                      https://www.rdocumentation.org/packages/brranching/versions/0.6.0/topics/phylomatic)
+
+```
+
+# Module "Environment"
+
+# Module "Diversities"
+
+
+```{r}
+# NOT FOR THE WORKFLOW : La fonction select_level ne permets pas de faire des filtres et dans notre cas on a besoin si on veut comparer les méthodes entre elles il faut enlever la période June
+
+metad <- sample.metaD %>% rownames_to_column(var="sample") 
+  
+tree.trait.comm.pruned$comm.level <- tree.trait.comm.pruned$comm %>% rownames_to_column(var="sample") %>%
+    gather("taxa", "count", -sample) %>%
+    left_join(metad, by="sample") %>%
+    filter(Season!="June") %>%
+    group_by(Methode, taxa) %>%
+    summarize(new_count=sum(count)) %>%
+    spread(taxa, new_count) %>%
+    column_to_rownames(var="Methode")
+```
+
+
+## Prepare datasets
+
+**Description:** To perform analysis of different diversities from the same community matrix, we must subset our datasets to have only taxa present in the different datasets. This section allows the user to have :
+
+  + Traits table and community matrix subsetted on each others
+  + Phylogenetic tree and community matrix subsetted on each others
+  + Phylogenetic tree, traits table and community matrix subsetted on each others
+  + A venn diagram showing the shared and lost taxa after the following steps
+
+
+### Traits table and community matrix subsetted on each others
+
+**Description:**
+
+  + 1) Convert the OTU or ASV community data matrix into Species community data matrix (if there is >=2 OTUs per species, the numbers of reads is summed) , then 
+  + 2) Prune and sort traits tables and community data matrix to match another content (at the species level or at the OTU level keeping only OTU assigned to family, genus or species level because of possibility of trait availability)
+
+
+```{r traits_comm}
+
+traits.comm.pruned <- traits.comm.pruning(otu.comm.in = otu.comm, 
+                                          type.rank = "Actinopterygii", # default = NULL
+                                          taxo.table.in = taxo.table.class, 
+                                          trait.table.in = trait.table.user) # can be trait.table.fishbase
+```
+
+
+### Phylogenetic tree and community matrix subsetted on each others
+
+**Description:**
+
+  + 1) Convert the OTU community data matrix into Species community data matrix (if there is >=2 OTUs per species, the numbers of reads is summed), then 
+  + 2) Check if there are psecies absent from the community data matrix in the phylogenetic tree and if yes, try to see if this is not a probleme of synonyms, if yes, names are changed in the phylogenetic tree
+  + 3) Prune and sort phylo.tree and community data matrix to match another content
+
+
+
+```{r}
+# helps/infos files:
+#https://rpubs.com/bw4sz0511/prune
+#http://www.phytools.org/Cordoba2017/ex/2/Intro-to-phylogenies.html
+```
+
+```{r tree_comm}
+tree.comm.pruned <- tree.comm.pruning(otu.comm.in = otu.comm,  
+                                      type.rank = "Actinopterygii", # default = NULL
+                                      taxo.table.in = taxo.table.class, 
+                                      phylo.tree.in = phylo.tree.syn) # or can be phylo.tree.user
+``` 
+
+### Phylogenetic tree, traits table and community matrix subsetted on each others
+
+**Description:**
+
+  + 1)
+
+```{r trait_tree_comm}
+tree.trait.comm.pruned <- tree.traits.comm.pruning(phylo.comm=tree.comm.pruned$comm, 
+                                                   phylo.tree=tree.comm.pruned$phylo.tree, 
+                                                   traits.comm=traits.comm.pruned$comm, 
+                                                   traits.table=traits.comm.pruned$traits)
+
+```
+
+
+### Evaluation of the datasets
+#### VD
+**Description:** Make a venn diagram to see the "pool" of species that will be used to compare the 3 types of diversity (ie the OTUs identified at the species level for which the traits and phylogenetic values were found) 
+
+```{r vd_plot}
+
+vd_3div_plot(type.rank = "Actinopterygii", # default = NULL
+             taxo.table.in = taxo.table.class, 
+             phylo = tree.comm.pruned$comm,
+             traits = traits.comm.pruned$comm)
+
+vd_3div_overlap(type.rank = "Actinopterygii", # default = NULL
+                taxo.table.in = taxo.table.class, 
+                phylo = tree.comm.pruned$comm,
+                traits = traits.comm.pruned$comm)
+```
+
+#### Proportion of kept reads
+
+```{r}
+
+```
+
+
+#### PCoA-Coinertia
+
+Correlation between the community pattern observed with the OTU comm, the sp comm, the selected sp comm.
+
+```{r}
+
+```
+
+### Selection of data
+
+#### Aggregate replicates
+
+```{r}
+tree.trait.comm.pruned$comm.sel <- agg_replicates(comm.in=tree.trait.comm.pruned$comm, 
+                                   metad=sample.metaD,
+                                   no.replicates="Merge_replicat", 
+                                    method="sum") # can be "mean"
+
+# For the argument no.replicates : put the name of the column 
+# from the metadata table where the sample
+# name is without replicates (ex SAMPLE01_R1 --> SAMPLE01)
+
+```
+
+#### Filter 
+
+```{r}
+
+tree.trait.comm.pruned$comm.sel <- filter_samples(comm.in=tree.trait.comm.pruned$comm, 
+                                                  metad=sample.metaD, 
+                                                  col="Season", 
+                                                  var="September") # if two or more variable --> var=c("var1", "var2")
+```
+
+
+#### Select level
+
+If the user wants to "merge" the samples of the community matrix at higher level (ex: at the site, season, ...) to perform diversity indices, the following section allows to do that, if not the user can skip this section. The number of read per taxa is summed (could be changed to allow the user to use sum or mean for instance) at the defined level
+
+```{r}
+# The user must defined the level of samples: The name must match exactly the column names of the metadata table
+# examples: 
+# if only one column -->
+#levels <- "Methode"  
+# if many columns -->
+#levels <- c("Methode", "Season", "Site")
+
+levels <- "Methode"  
+
+tree.trait.comm.pruned$comm.sel <- select_level(sp.comm.in=tree.trait.comm.pruned$comm, 
+                                                metad=sample.metaD, 
+                                                method="sum", # can be "mean"
+                                                levels)
+
+```
+
+### Make final check 
+
+Can be skipped if the user did not use the selection of data section, if not, modify the community can impact the number of species kept, so it is important to subset again the phylogenetic tree and trait table
+
+```{r}
+tree.trait.comm.pruned.sel <- tree.phylo.comm.sel(sp.comm.in = tree.trait.comm.pruned$comm.sel, 
+                                                  trait.table.in = tree.trait.comm.pruned$traits, 
+                                                  phylo.tree.in = tree.trait.comm.pruned$phylo.tree)
+  
+order.col <- colnames(tree.trait.comm.pruned.sel$comm)
+
+tree.trait.comm.pruned.sel$traits <- tree.trait.comm.pruned.sel$traits[match(order.col, rownames(tree.trait.comm.pruned.sel$traits)),]
+
+
+```
+
+
+
+```{r}
+hill_phylo.sel <- hill_phylo(tree.trait.comm.pruned.sel$comm, tree.trait.comm.pruned.sel$phylo.tree, q = 0) %>%
+  as.data.frame() %>%
+  rename(hill_phylo=".") %>%
+  rownames_to_column(var="sample")
+
+hill_func.sel <- hill_func(tree.trait.comm.pruned.sel$comm, tree.trait.comm.pruned.sel$traits, q = 0) %>%
+  as.data.frame() 
+hill_func.sel.2 <- subset(hill_func.sel, rownames(hill_func.sel) == "D_q")%>%
+  as.data.frame() %>%
+  gather("sample","hill_func")
+
+
+hill_taxa.sel <- hill_taxa(tree.trait.comm.pruned.sel$comm, q = 0)%>%
+  as.data.frame()%>%
+  rename(hill_taxa=".") %>%
+  rownames_to_column(var="sample")
+
+
+hill.facets <- full_join(hill_phylo.sel, hill_func.sel.2, by="sample") %>%
+  full_join(., hill_taxa.sel,by="sample") %>%
+  gather("hill_facet", "hill_numb", -sample)
+
+sample.metaD.facet <- sample.metaD %>% rownames_to_column(var="sample")
+
+
+hill.facets <- hill.facets %>%
+  left_join(sample.metaD.facet, by="sample")
+  
+
+q0 <- ggplot(data=hill.facets, aes(x=Site, y=hill_numb, color=Methode)) +
+  geom_boxplot() +
+  facet_wrap(vars(hill_facet), scales="free") +
+  ggtitle("q0")
+
+q1 <- ggplot(data=hill.facets, aes(x=Site, y=hill_numb, color=Methode)) +
+  geom_boxplot() +
+  facet_wrap(vars(hill_facet), scales="free")+
+  ggtitle("q1")
+
+
+q2 <- ggplot(data=hill.facets, aes(x=Site, y=hill_numb, color=Methode)) +
+  geom_boxplot() +
+  facet_wrap(vars(hill_facet), scales="free")+
+  ggtitle("q2")
+
+grid.arrange(q0,q1,q2)
+```
+
+
+### Make functional distance matrix
+https://rdrr.io/cran/funrar/man/compute_dist_matrix.html
+
+```{r}
+# transform trait table
+
+# change column non num to num
+# distance gower
+a <- gowdis(tree.trait.comm.pruned$traits)
+
+# hclust UPGMA
+aa <- hclust(a, method="ward.D2")
+class(aa)
+
+evodivparam(aa, tree.trait.comm.pruned$comm,q = 2, tol = 1e-08)
+```
+
+
+## Alpha diversity
+
+
+```{r}
+z <- hill_func(tree.trait.comm.pruned$comm,
+                tree.trait.comm.pruned$traits,
+                q = 0)
+
+x <- subset(z, rownames(z) == "D_q")
+
+x <- as.data.frame(x) %>% gather("name", "hill_func")
+
+x %>%
+
+```
+
+
+```{r}
+
+test.comm <- tree.trait.comm.pruned$comm
+test.phylo <- tree.trait.comm.pruned$phylo
+test.trait <- tree.trait.comm.pruned$traits
+
+
+
+
+
+plot(divparam(test.comm, q=seq(0, 3, le=50)), 
+     axisLABEL = "Species diversity")
+
+plot(evodivparam(test.phylo, test.comm, q=seq(0, 3, le=50))) 
+
+```
+
+
+```{r}
+# doi: 10.1111/j.1461-0248.2010.01493.x
+# Plots of the relationships between each component of gamma and beta diversity
+```
+
+
+
+divparam # taxo diversity
+
+https://cran.r-project.org/web/packages/hillR/hillR.pdf
+
+```{r}
+batab <- batcomm$ab
+rownames(batab)
+rownames(batab) <- c("rainforest","cacao plantations","oldfields","cornfields")
+
+
+plot(divparam(batab, q=seq(0, 3, le=50)), pch=1:4, col=1:4, 
+     axisLABEL = "Species diversity")
+```
+
+
+evodivparam # phylo and trait div based on dendrogram
+
+```{r}
+phy <- read.tree(text=batcomm$tre) # Bat phylogenetic tree 
+ab <- batab[, phy$tip.label] 
+# Species in the abundance table are ordered as in the phylogenetic tree 
+plot(evodivparam(phy, ab, q=seq(0, 3, le=50)), pch=1:4, col=1:4) 
+```
+
+```{r}
+# compute gower distance on traits data
+# do a clustering tree with hclust using UPGMA
+```
+
+plot the 3 plots on a same figure
+
+# Set working directory
+
+**Description:** 
+
+The user must provide the path where the workflow is located
+
+```{r set_wd}
+
+dir_tree()
+
+# Provide the path where the workflow is located
+pathToUserDir <- "C:/Users/arey/Documents/POSTDOC/DUBII_cours/module_projet_tuto/workflow_div_v1/"
+
+
+## Create a vector with all the user-specific directories, which can be exported in the report afterwards
+dir <- vector()
+
+## Specify your home directory
+dir["home"] <- "C:/Users/arey/Documents/POSTDOC/DUBII_cours/module_projet_tuto/workflow_div_v1" # This should probably be modified for Windows OS. 
+
+## Specify the local directory for the personal work
+## Don't hesitate to modify this according to your own file organisation
+dir["input"] <- file.path(dir["home"], "input") 
+dir.create(dir["input"], showWarnings = FALSE, recursive = TRUE)
+
+## Directory with the results of all analyses
+dir["output"] <- file.path(dir["home"], "output")
+dir.create(dir["output"], showWarnings = FALSE, recursive = TRUE)
+
+
+## Print out a table with the working directories
+kable(data.frame(dir), col.names = "Directory", caption = "Directories")
+
+
+```
