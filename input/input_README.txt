@@ -1,0 +1,1 @@
+The user must put all possible input files for the workflow here (in path/to/here/workflow_div_v1/input_files/)

@@ -1,0 +1,87 @@
+---
+title: "To be ultrametric or not to be"
+author: "Anaïs Rey"
+date: "22/10/2020"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+urlcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Infos
+
+[Link to Site of fishtreeoflife](https://fishtreeoflife.org/methods/) from where the tree is downloaded with the Rpackage [fishtree](https://cran.r-project.org/web/packages/fishtree/fishtree.pdf) 
+
+[Link to the published Pavoine's article on the adiv R package used to compute diversities indices](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13430) --> This is where she said "The tree is ultrametric, meaning that the total branch length from any tip (species) to the root remains constant." regarding the dataset used to illustrate the package
+
+[Link to the adiv Cran](https://cran.r-project.org/web/packages/adiv/adiv.pdf)
+[Link to the hillR Cran](https://cran.r-project.org/web/packages/hillR/hillR.pdf) --> compute hill indices for taxo, functional and phylo diversities. They don't mention anything about ultrametric tree.
+
+[Link to Chao et al 2010 Phylogenetic diversity measure based on Hill numbers](https://royalsocietypublishing.org/doi/10.1098/rstb.2010.0272) --> Probably the answer about the possibilities of using hill number with non-ultrametric tree is somehwere here. I started to read but it will take me a while. From a general manner what I understand so far it that ultrametric tree are easier to compute (they are simple than non-ultrametric). 
+
+Je continue de chercher!
+
+# Code R (download fishtree, make ultrametic)
+
+```{r}
+library(fishtree)
+library(ape)
+library(phytools)
+```
+
+
+Download the phylo tree from fishtree with type=chronogram (chronogram has branch lengths proportional to units of time) to get an almost ultrametric tree
+```{r}
+phylo.tree <- fishtree_phylogeny(type="chronogram") 
+```
+
+Plot the phylo tree
+```{r}
+plot(phylo.tree, show.tip.label = FALSE)
+```
+
+Test if is ultrametric - In the help file of [link to fishtree_phylogeny()](https://rdrr.io/cran/fishtree/man/fishtree_phylogeny.html), they wrote 
+"Chronograms may not be ultrametric due to numerical precision issues, Consider using phytools::force.ultrametric"
+
+```{r}
+ape::is.ultrametric(phylo.tree) # check is it is ultrametric 
+```
+
+If we are tolerant on the numerical precision as they suggest, the tree is ultrametric
+```{r}
+ape::is.ultrametric(phylo.tree, tol = 0.00001) # check is it is ultrametric with a tolerance 
+# tol is deifined as a numeric >= 0 variation below this value are considered non-significant.
+```
+
+To convert the tree to ultrametric, they proposed to use phytools::force.ultrametric, I tried but I get this error (looks like complicated to solve):
+Erreur : impossible d'allouer un vecteur de taille 4.0 Go
+```{r}
+#phytools::force.ultrametric(phylo.tree)
+```
+
+So I found another option suggested [link to here](https://phylotips.info/post/my-ultrametric-tree-is-not-ultrametric/) and [link to here](http://phylobotanist.blogspot.com/2018/04/time-calibrated-or-at-least-ultrametric.html)
+
+```{r}
+# this re-estimate branch lengths to have exact same lenght
+phylo.tree.ultra <- ape::chronoMPL(phylo.tree) 
+# check if it is ultrametric
+ape::is.ultrametric(phylo.tree.ultra) 
+```
+
+If we plot the two trees (the one almost ultrametric and the one now ultrametric), we see that they are similar and we can plot also the edge lengths (branch lengths) between the original and final trees to see how little things have changed:
+
+```{r}
+par(mfrow=c(1,3))
+plot(phylo.tree, show.tip.label = FALSE, main="Original - almost ultrametric tree")
+plot(phylo.tree.ultra, show.tip.label = FALSE, main="Post-chronos tree - ultrametric tree")
+plot(phylo.tree$edge.length, phylo.tree.ultra$edge.length, 
+     xlab="Original - almost ultrametric tree", 
+     ylab="Post-chronos tree - ultrametric tree", pch=20, bty="n")
+abline(a=0, b=1, col="gray", lwd=0.5)
+```
+
+
