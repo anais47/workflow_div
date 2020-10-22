@@ -7,19 +7,36 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-
 ``` 
 
 # Workflow description
-To do before starting the workflow in Rstudio
-1) Download and unzip the folder "workflow_div_v1.gz"
-2) Move the input files in the directory workflow_div_v1/input
 
-Needed files to start
+To do before starting the workflow in Rstudio:
+
+  + 1) Download and unzip the folder "workflow_div_v1.gz"
+  
+  + 2) Move the input files in the directory workflow_div_v1/input
+  
+Input files are: 
+  
+  + **MANDATORY FILE OTU or ASV table :**  It must be a .csv file with samples in row and OTU or ASV in column.The first column is the sample ID and the following columns are the OTU or ASV. It can be a presence/absence (0-1) or abundance table.  
+  
+  + **MANDATORY FILE Sample metadata table :** It must be a .csv file. If the coordinate gps of sites, sampling event date and sampling year are provided, names of columns must be decimalLongitude, decimalLatitude, eventDate, year. The import function will automatically add those columns and put "not_provided_by_user" if the user did not provide those columns. 
+  
+  + **MANDATORY FILE Taxonomic assignment table :** It must be a .csv file. This file must be composed of 2 columns: the firt column called OTU_ID (ID of the OTU or ASV ex OTU001) and the second called user_supplied_name (taxonomic assignmenent of the OTU or ASV ex Labrus bergylta). A space between genus and species names is required (for now underscores or point are not accepted).
+  
+  + **OPTIONAL FILE Traits table :** It must be a .csv file where each column is a trait and one column is the taxon name called taxon
+  
+  + **OPTIONAL FILE Phylogenetic tree :** .tre file ? ??? NOT COMPLETED
+  
+  + 3) Open the file workflow_div_v1.Rproj and you are good to go !
+  
 
 # A FAIRE
 
  + Voir la compatibilté entre R4 et version d'avant 
+ 
+ + Voir comment l'utilisateur pourrait rentrer directement avec une table taxon-reads (ou pour autre que metaB taxon-abundance) --> beaucoup de chose à adpater dans les fonctions qui suivent du coup 
  
  + Travail à faire pour que les librairies soient déjà téléchargées/éviter à l'utilisateur les problèmes de dépendances/de version de R, ... --> voir avec François / Gildas / Romain?
  
@@ -84,12 +101,15 @@ load.packages()
 
 Input files are: 
   
-  + **MANDATORY FILE OTU or ASV table :**  It must be a .csv file containing the OTU or ASV table with OTU or ASV in column and sample names in rownames. This object must be a numeric matrix  
+  + **MANDATORY FILE OTU or ASV table :**  It must be a .csv file with samples in row and OTU or ASV in column.The first column is the sample ID and the following columns are the OTU or ASV. It can be a presence/absence (0-1) or abundance table.  
+  
   + **MANDATORY FILE Sample metadata table :** It must be a .csv file. If the coordinate gps of sites, sampling event date and sampling year are provided, names of columns must be decimalLongitude, decimalLatitude, eventDate, year. The import function will automatically add those columns and put "not_provided_by_user" if the user did not provide those columns. 
-  + **MANDATORY FILE Taxonomic assignment table :** It must be a .csv file. This file must be composed of 2 columns: one called OTU_ID (name of the OTU or ASV) and one called user_supplied_name (taxonomic assignmenent of the OTU or ASV). A space between genus and species names is required (for now underscores or point are not accepted)
+  
+  + **MANDATORY FILE Taxonomic assignment table :** It must be a .csv file. This file must be composed of 2 columns: the firt column called OTU_ID (ID of the OTU or ASV ex OTU001) and the second called user_supplied_name (taxonomic assignmenent of the OTU or ASV ex Labrus bergylta). A space between genus and species names is required (for now underscores or point are not accepted).
+  
   + **OPTIONAL FILE Traits table :** It must be a .csv file where each column is a trait and one column is the taxon name called taxon
+  
   + **OPTIONAL FILE Phylogenetic tree :** .tre file ? ??? NOT COMPLETED
-
 
 **Users' action:** 
 
@@ -147,6 +167,17 @@ rm(datasets)
 
 ```
 
+**Description:**  Check if the samples names and OTU ID are exactly the same between the 3 mandatory imported files and check if the dimensions between the files are the same. 
+
+**Users' action:** Click on the green start icon "chek_input_mandatory" and move to the following chunk only if you don't get at least one error message. If you get one error message, you need to be come back to your .csv files, correct them and relaunch the above chunk "input_data".
+
+```{r chek_input_mandatory}
+check_match(otu=otu.comm, 
+            metadata=sample.metaD, 
+            taxo=taxo.table)
+```
+
+
 Add something to list/see the head of each imported file?
 ```{r}
 
@@ -164,6 +195,8 @@ The function has 2 steps:
   
   + **Retrieve the taxonomic classification:** It retrieves from the package worrms the accepted taxonomy (scientific accepted name and associated classification) of each query by putting marine_only=FALSE to increase the number of species for which the taxonomy is found. When the taxon is not found in WORMS, a second search is done in GBIF (useful for instance when non-marine/aquatic taxa are present)
 
+**Users' action:** Click on the green start icon "get_class" and move to the following chunk
+
 ```{r get_class}
 taxo.table.class <- get_taxo_class(taxo.table.in=taxo.table)
 
@@ -171,7 +204,10 @@ head(kable(taxo.table.class, caption="First rows of the new taxonomic classifica
 
 ```
 
-Identify the taxonomic assignments with no taxonomic classification found in WORMS and GBIF 
+
+**Description:** Identify the taxonomic assignments with no taxonomic classification found in WORMS and GBIF 
+
+**Users' action:** Click on the green start icon "no_class" and move to the following chunk
 
 ```{r no_class}
 taxo.table.class %>% filter(source=="none")
@@ -180,16 +216,45 @@ taxo.table.class %>% filter(source=="none")
 **WARNINGS --> Here I don't know what we need to do: The user must manually change the user_supplied_name and restart the workflow ? Do we let it like that and "forget" this OTU? NEED TO THINK ABOUT A SOLUTION.**
 
 
-## Filter on non-target taxa
+## Filter on taxa
 
-**Description:** Remove untargeted taxa if required by the user
+**Description:** Remove taxa if required by the user
 
-```{r}
+**Users' action:** Click on the green start icon "filter_taxa" xxxxx and move to the following chunk
+
+```{r filter_taxa}
 # NOT STARTED YET
+
+taxo.table.class
 ```
 
 
 ## Traits
+
+The user has 2 options:
+
+  + option 1: if no trait table was imported in the workflow, the user can retrieve traits data from rfishbase https://cran.r-project.org/web/packages/rfishbase/rfishbase.pdf (for fishes-targeted study only)
+  
+  + option 2 : if a trait table was imported in the workflow, this option will check that the taxon name are matching between taxonomic assignmenet and traits tables and if not will correct it. 
+
+
+### Option 1: Request Fishbase
+
+
+```{r request_trait}
+
+```
+
+```{r choice_traits}
+
+```
+
+```{r select_traits}
+
+```
+
+
+
 
 **Description:** Do some checking if a user trait table is provided, if not, performs an automatic request of trait from Fishbase with the R package rfishbase (https://cran.r-project.org/web/packages/rfishbase/rfishbase.pdf)
 
@@ -217,24 +282,6 @@ trait.table.user.comm <- datasets$trait.table.user %>%
   column_to_rownames(var="taxon")
 ```
   
-### Request Fishbase
-
-If no user trait's table was imported or if some species from the community matrix where absent from the user traits' table (not done yet), 
-go into Fishbase to retrieve traits 
-
-**Remark:** It seems complicated for now to imagine the code in the case where we want to complement user's trait table if some species are absent because we need to have exact match between the name of the traits between user trait table and fishbase columns names- perhaps before at the begining of the module Traits, we could "force" the user to set very specific traits and use the name from Fishabse but it looks quite a bit messy --> Need to be discussed together
-
-```{r request_trait}
-
-```
-
-```{r choice_traits}
-
-```
-
-```{r select_traits}
-
-```
 
 ## IUCN status
 
@@ -247,6 +294,25 @@ go into Fishbase to retrieve traits
 
 # Module Occurence
 
+## Red flags species
+
+**Description:** This shows the potential "red flags" species (ie not present in the obis database or not present in the targeted user area). Many explanations are posible  such as rare species with absent or too few data, error in the taxonomic assignment, potential new introduction. This function does not intend to give an explanation but rather to tru to spot species not present in the study area.
+
+**Users' action:** Click on the green start icon "red_flag" and look at the output
+
+```{r red_flag}
+spList <- taxo.table.class %>% filter(rank=="Species") %>% pull(valid_name) 
+
+id.redflag.obis(spList,
+                startdate_chosen = NULL, # enter a year
+                type_zone="area", # or type_zone="polygon"
+                coord_zone = NULL, # to plot all occurences over the world
+                #coord_zone=c("40023", "40024", "40025", "40026"), # or coord_zone = NULL or coord_zone="POLYGON ((-4 48.5, -4 48.8, -3.7 48.8, -3.7 48.5, -4 48.5))"
+                type_zone="area", 
+                coord_zone="40024") 
+```
+
+
 ## Occurence - target species
 
 Plot occurence of targeted species found in the user dataset
@@ -254,12 +320,13 @@ Plot occurence of targeted species found in the user dataset
 **For now done for one species at a time --> NEED TO BE IMPROVED**
 
 ```{r}
-species.target <- "Labrus mixtus"
+species.target <- "Rutilus rutilus"
 
 occ.species.target <- get.occ.species.obis(species.name = species.target, 
-              startdate_chosen = NULL, # explain how to enter the data, format and look if its works
+              startdate_chosen = NULL, # enter a year
               type_zone="area", # or type_zone="polygon"
-              coord_zone=c("40023", "40024", "40025", "40026"), # or coord_zone = NULL or coord_zone="POLYGON ((-4 48.5, -4 48.8, -3.7 48.8, -3.7 48.5, -4 48.5))"
+              coord_zone = NULL, # to plot all occurences over the world
+              #coord_zone=c("40023", "40024", "40025", "40026"), # or coord_zone = NULL or coord_zone="POLYGON ((-4 48.5, -4 48.8, -3.7 48.8, -3.7 48.5, -4 48.5))"
               otu.comm.target = otu.comm, 
               sample.metaD.target = sample.metaD, 
               taxo.table.class.target = taxo.table.class,
@@ -278,17 +345,25 @@ plot.occ.species.obis(occ.species.target)
 until 12 species colored
 
 ```{r}
-otu.Genus <- taxo.table.class.target %>% filter(rank=="Genus") %>% distinct(valid_name)
-otu.Genus      
+taxo.table.class %>% filter(rank=="Genus") %>% distinct(valid_name)
 
-occ.genus.obis(genus="Labrus",
-               startdate_chosen = "2012", 
+occ.genus.obis(genus="Pholis",
+               startdate_chosen = "2000", 
                type_zone="area", 
                coord_zone="40024")
 ```
 
 
 Plot occurences of species present in the sampling area from taxa only identified at the genus level in the user dataset 
+
+
+```{r}
+plot.occ.genus.obis(genus="Pholis",
+               startdate_chosen = "2000", 
+               type_zone="area", 
+               coord_zone="40024")
+```
+
 
 # Module "Phylo"
 

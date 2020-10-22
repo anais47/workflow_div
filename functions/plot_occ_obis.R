@@ -17,6 +17,62 @@
 # depth, year of collection ("year) and abundance ("individualCount").
 
 # FUNCTION 1 ----
+# Aim: Identify red flags species
+
+id.redflag.obis <- function(spList,
+                            startdate_chosen = NULL, 
+                            type_zone, coord_zone){
+  
+  # Change the data for robis package : year to year-month-day
+  if(!is.null(startdate_chosen)){
+    
+    startdate_chosen=as.Date(paste(startdate_chosen, "-01-01", sep=""))
+  }
+  
+  result <- NULL
+  
+  for(species in spList){
+    
+    if(dim(robis::checklist(species))[1] == 0){
+      
+      explanation <- "REDFLAG: not found in obis"
+      
+      df <- as.data.frame(cbind(species, explanation))
+      
+    } else {
+      
+      if(type_zone== "area"){
+        check <- robis::checklist(species, 
+                                  areaid = coord_zone, 
+                                  startdate = startdate_chosen)
+      } else if(type_zone == "polygon"){
+        check <- robis::checklist(species, 
+                                  geometry = coord_zone,
+                                  startdate = startdate_chosen) 
+      }
+      
+      if(dim(check)[1] != 0){
+        explanation <- "found in the area"
+        df <- as.data.frame(cbind(species, explanation))
+      } else {
+        explanation <- "REDFLAG: not found in the area"
+        df <- as.data.frame(cbind(species, explanation))}
+    }
+    result <- rbind(result, df)
+    result.flag <- result %>% dplyr::filter(stringr::str_detect(explanation, "REDFLAG"))
+    
+  }
+  if(dim(result.flag)[1] == 0){
+    print("NO REDFLAG SPECIES IDENTIFIED")
+    
+  } else {
+    
+    return(result.flag)
+  }
+}  
+
+
+# FUNCTION 2 ----
 # Aim: Retrieve occurences of targeted marine species from obis
 
 get.occ.species.obis <- function(species.name, 
@@ -129,7 +185,7 @@ get.occ.species.obis <- function(species.name,
   }
 }
 
-# FUNCTION 2 ----
+# FUNCTION 3 ----
 plot.occ.species.obis <- function(data.for.plot){
   
   labels <- data.for.plot$origin_occ %>% lapply(htmltools::HTML)
@@ -161,7 +217,7 @@ plot.occ.species.obis <- function(data.for.plot){
                               fillOpacity = 1, label = labels) 
 }     
       
-# FUNCTION 3 ----
+# FUNCTION 4 ----
 
 occ.genus.obis <- function(genus,
                            startdate_chosen = NULL, 
@@ -208,7 +264,7 @@ occ.genus.obis <- function(genus,
 }
   
 
-# FUNCTION 4 ----
+# FUNCTION 5 ----
 plot.occ.genus.obis <- function(genus,
                                 startdate_chosen = NULL, 
                                 type_zone, coord_zone){
