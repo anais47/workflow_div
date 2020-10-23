@@ -320,7 +320,7 @@ Plot occurence of targeted species found in the user dataset
 **For now done for one species at a time --> NEED TO BE IMPROVED**
 
 ```{r}
-species.target <- "Rutilus rutilus"
+species.target <- "Labrus mixtus"
 
 occ.species.target <- get.occ.species.obis(species.name = species.target, 
               startdate_chosen = NULL, # enter a year
